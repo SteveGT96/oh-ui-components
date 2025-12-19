@@ -1,4 +1,3 @@
-import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { describe, expect, it } from "vitest";
@@ -10,11 +9,9 @@ describe("App Integration", () => {
     render(<App />);
 
     const button = screen.getByRole("button", { name: /count is 0/i });
-    expect(button).toBeInTheDocument();
+    expect(button).toBeTruthy();
 
     await user.click(button);
-    expect(
-      screen.getByRole("button", { name: /count is 1/i })
-    ).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: /count is 1/i })).toBeTruthy();
   });
 });
