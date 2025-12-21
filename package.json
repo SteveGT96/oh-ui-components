@@ -1,15 +1,21 @@
 {
-  "name": "oh-ui-components",
-  "private": true,
+  "name": "@oh/ui-components",
   "version": "0.0.0",
   "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "start": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "test": "vitest",
+    "test:run": "vitest run"
   },
   "dependencies": {
     "@tailwindcss/vite": "^4.1.18",
