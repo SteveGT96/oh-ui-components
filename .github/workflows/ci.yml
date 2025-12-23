@@ -38,6 +38,10 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          rm -rf node_modules package-lock.json
+          npm install
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
