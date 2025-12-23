@@ -32,20 +32,15 @@ jobs:
         run: npm run build
         env:
           CI: true
+  e2e:
+    runs-on: ubuntu-latest
 
-      - name: Start dev server
-        run: npm run dev &
-        env:
-          CI: true
-
-      - name: Wait for server
-        run: |
-          for i in {1..60}; do
-            if curl -s http://localhost:5173 > /dev/null; then
-              break
-            fi
-            sleep 1
-          done
-
-      - name: Run Cypress tests
-        run: npx cypress run
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Cypress run
+        uses: cypress-io/github-action@v6
+        with:
+          record: false
+          start: npm start
+          wait-on: "http://localhost:5173"
