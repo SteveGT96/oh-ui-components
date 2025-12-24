@@ -21,9 +21,7 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: |
-          rm -rf node_modules package-lock.json
-          npm install
+        run: npm ci --include=optional
 
       - name: Lint code
         run: npm run lint
@@ -38,13 +36,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Install dependencies
-        run: |
-          rm -rf node_modules package-lock.json
-          npm install
+        run: npm ci --include=optional
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
           record: false
-          start: npm start
+          start: npm run dev
           wait-on: "http://localhost:5173"
