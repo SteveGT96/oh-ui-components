@@ -21,7 +21,11 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci --include=optional
+        env:
+          npm_config_optional: "true"
+          npm_config_os: "linux"
+          npm_config_cpu: "x64"
+        run: npm ci
 
       - name: Lint code
         run: npm run lint
@@ -50,7 +54,11 @@ jobs:
           cache: "npm"
 
       - name: Install dependencies
-        run: npm ci --include=optional
+        env:
+          npm_config_optional: "true"
+          npm_config_os: "linux"
+          npm_config_cpu: "x64"
+        run: npm ci
 
       - name: Run Cypress E2E tests
         uses: cypress-io/github-action@v6
