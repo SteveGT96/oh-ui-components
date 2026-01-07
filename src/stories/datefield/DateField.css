@@ -1,0 +1,15 @@
+.date-field {
+  width: 100%;
+}
+
+.date-field .MuiInputBase-root {
+  height: 56px;
+}
+
+.date-field .MuiInputLabel-root {
+  transition: all 0.2s ease;
+}
+
+.date-field .Mui-disabled {
+  cursor: not-allowed;
+}
