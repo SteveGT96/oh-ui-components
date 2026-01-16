@@ -1,24 +1,11 @@
+import { Select } from "@/components/ui/select";
 import { useState } from "react";
 import "./App.css";
 import reactLogo from "./assets/react.svg";
-import { SelectField } from "./components/selectField/SelectField";
 import viteLogo from "/vite.svg";
 
 function App() {
   const [count, setCount] = useState(0);
-
-  const [value, setValue] = useState<string | undefined>();
-  const [error, setError] = useState("");
-
-  const handleSubmit = () => {
-    if (!value) {
-      setError("Ce champ est obligatoire");
-
-      return;
-    }
-    setError("");
-    console.log("Valeur sélectionnée :", value);
-  };
 
   return (
     <>
@@ -42,26 +29,7 @@ function App() {
       <p className="read-the-docs">
         Click on the Vite and React logos to learn more
       </p>
-      import * as React from "react"
-      <SelectField
-        fieldName="ville"
-        label="Ville"
-        placeholder="Choisir une ville"
-        required={true}
-        isValid={!error}
-        fieldValue={value}
-        errorText={error}
-        onChange={(val) => {
-          setValue(val);
-          setError("");
-        }}
-        options={[
-          { label: "Paris", value: "paris" },
-          { label: "Lyon", value: "lyon" },
-          { label: "Marseille", value: "marseille" },
-        ]}
-      />
-      <button onClick={handleSubmit}>Valider</button>
+      <Select></Select>
     </>
   );
 }
