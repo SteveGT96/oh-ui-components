@@ -1,6 +1,6 @@
 /// <reference types="vitest/config" />
 import react from "@vitejs/plugin-react";
-import path, { resolve } from "path";
+import path, { resolve } from "node:path";
 import { defineConfig } from "vite";
 import dts from "vite-plugin-dts";
 
@@ -37,7 +37,7 @@ export default defineConfig({
   },
   resolve: {
     alias: {
-      "@": path.resolve(__dirname, "./src/lib"),
+      "@": path.resolve(__dirname, "./src"),
     },
   },
 });

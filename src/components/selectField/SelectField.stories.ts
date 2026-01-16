@@ -1,8 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
-import SelectField from "./SelectField";
-
-// import { SelectField } from "./SelectField";
+import { SelectField } from "./SelectField";
 
 const meta = {
   title: "Form/SelectField",
@@ -41,7 +39,7 @@ export const Default: Story = {
     label: "Select an option",
     fieldName: "defaultSelect",
     fieldValue: "",
-    isValid: false,
+    isValid: true,
     errorText: "",
   },
 };
@@ -51,7 +49,7 @@ export const WithValue: Story = {
     label: "Select an option",
     fieldName: "defaultSelect",
     fieldValue: "2",
-    isValid: false,
+    isValid: true,
     errorText: "",
   },
 };
@@ -61,7 +59,7 @@ export const WithError: Story = {
     label: "Select an option",
     fieldName: "defaultSelect",
     fieldValue: "",
-    isValid: true,
+    isValid: false,
     errorText: "This field is required",
   },
 };
@@ -72,7 +70,7 @@ export const Disabled: Story = {
     disabled: true,
     fieldName: "defaultSelect",
     fieldValue: "",
-    isValid: false,
+    isValid: true,
     errorText: "",
   },
 };
