@@ -1,5 +1,4 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import dayjs from "dayjs";
 
 import { DateField } from "./DateField";
 
@@ -18,21 +17,21 @@ type Story = StoryObj<typeof DateField>;
 export const Default: Story = {
   args: {
     label: "Birth date",
-    fieldValue: null,
+    fieldValue: undefined,
   },
 };
 
 export const WithValue: Story = {
   args: {
     label: "Birth date",
-    fieldValue: dayjs("1998-06-12"),
+    fieldValue: new Date("1998-06-12"),
   },
 };
 
 export const Disabled: Story = {
   args: {
     label: "Birth date",
-    fieldValue: null,
+    fieldValue: undefined,
     disabled: true,
   },
 };
@@ -40,8 +39,9 @@ export const Disabled: Story = {
 export const Error: Story = {
   args: {
     label: "Birth date",
-    fieldValue: null,
+    fieldValue: undefined,
     error: true,
     helperText: "Invalid Date",
+    required: true,
   },
 };

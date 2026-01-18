@@ -1,11 +1,17 @@
-import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
-import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import type { Dayjs } from "dayjs";
-import { useEffect, useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Calendar } from "@/components/ui/calendar";
+import { Label } from "@/components/ui/label";
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import { cn } from "@/lib";
+import { ChevronDownIcon } from "lucide-react";
+import { useState } from "react";
 import type { DateFieldProps } from "./type";
 
-export const DateField: React.FC<DateFieldProps> = ({
+export function DateField({
   label,
   fieldValue,
   onChange,
@@ -13,35 +19,46 @@ export const DateField: React.FC<DateFieldProps> = ({
   error = false,
   helperText,
   required = false,
-  minDate,
-  maxDate,
-}) => {
-  const [value, setValue] = useState<Dayjs | null>(null);
-  useEffect(() => {
-    setValue(fieldValue);
-  }, [fieldValue]);
+}: DateFieldProps) {
+  const [open, setOpen] = useState(false);
+  const [date, setDate] = useState<Date | undefined>(fieldValue);
+
   return (
-    <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker
-        label={label}
-        value={value}
-        onChange={(date) => {
-          setValue(date);
-          if (onChange !== undefined) onChange(date);
-        }}
-        disabled={disabled}
-        minDate={minDate}
-        maxDate={maxDate}
-        slotProps={{
-          textField: {
-            fullWidth: true,
-            required,
-            error,
-            helperText,
-            className: "date-field",
-          },
-        }}
-      />
-    </LocalizationProvider>
+    <div className="flex flex-col gap-3">
+      <Label htmlFor="date" className="px-1">
+        {label}
+      </Label>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger
+          asChild
+          disabled={disabled}
+          className={error ? cn("border-destructive") : ""}
+        >
+          <Button
+            variant="outline"
+            id="date"
+            className="w-48 justify-between font-normal"
+          >
+            {date ? date.toLocaleDateString() : "Select date"}
+            <ChevronDownIcon />
+          </Button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto overflow-hidden p-0" align="start">
+          <Calendar
+            mode="single"
+            selected={date}
+            captionLayout="dropdown"
+            onSelect={(date) => {
+              setDate(date);
+              setOpen(false);
+              onChange(date ? new Date(date) : null);
+            }}
+          />
+        </PopoverContent>
+        {error && helperText && required && (
+          <div className={cn("text-destructive text-sm")}>{helperText}</div>
+        )}
+      </Popover>
+    </div>
   );
-};
+}
