@@ -1,9 +1,9 @@
+import { SelectField } from "@/lib/components/ui/SelectField";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
-import { SelectField } from "./SelectField";
 
 const meta = {
-  title: "Form/SelectField",
+  title: "Components/SelectField",
   component: SelectField,
   parameters: {
     layout: "centered",
@@ -60,6 +60,7 @@ export const WithError: Story = {
     fieldName: "defaultSelect",
     fieldValue: "",
     isValid: false,
+    required: true,
     errorText: "This field is required",
   },
 };
