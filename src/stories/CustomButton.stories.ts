@@ -1,11 +1,11 @@
+import { CustomButton } from "@/lib/components/ui/CustomButton";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { ArrowUpIcon } from "lucide-react";
 import { fn } from "storybook/test";
-import { OptimizeButton } from "./Button";
 
 const meta = {
-  title: "From/Button",
-  component: OptimizeButton,
+  title: "Components/Button",
+  component: CustomButton,
   parameters: {
     layout: "centered",
     width: "400%",
@@ -23,7 +23,7 @@ const meta = {
       control: "text",
     },
   },
-} satisfies Meta<typeof OptimizeButton>;
+} satisfies Meta<typeof CustomButton>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;

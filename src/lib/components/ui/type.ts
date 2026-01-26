@@ -1,7 +1,6 @@
 import type { LucideIcon } from "lucide-react";
-import type { Button } from "../ui/button";
 
-export interface ButtonProps extends React.ComponentProps<typeof Button> {
+export interface CustomButtonProps {
   variant?:
     | "default"
     | "destructive"
