@@ -1,18 +1,27 @@
+import { cn } from "@/lib";
 import type { Meta, StoryObj } from "@storybook/react-vite";
-import { OptimizeAccordion } from "./Accordion";
+import { CustomAccordion } from "../lib/components/ui/CustomAccordion";
 
 const meta = {
-  title: "UI/Accordion",
-  component: OptimizeAccordion,
+  title: "Components/Accordion",
+  component: CustomAccordion,
   parameters: {
     layout: "centered",
-    width: "500%",
   },
   tags: ["autodocs"],
-} satisfies Meta<typeof OptimizeAccordion>;
+} satisfies Meta<typeof CustomAccordion>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
+
+export const Default: Story = {
+  args: {
+    title: "Single accordion with paragraph",
+    collapsible: true,
+    content:
+      "This is the default content of the accordion. You can put any ReactNode here, such as text, images, or other components.",
+  },
+};
 
 export const SingleWithParagraph: Story = {
   args: {
@@ -29,7 +38,11 @@ export const SingleWithButton: Story = {
     title: "Single accordion with button",
     collapsible: true,
     content: (
-      <button className="hover:bg-gray-300 focus-visible:bg-gray-300 rounded-md px-4 py-2 text-sm font-medium transition-colors">
+      <button
+        className={cn(
+          "border-ring border hover:bg-ring focus-visible:bg-ring rounded-md px-4 py-2 text-sm font-medium transition-colors",
+        )}
+      >
         Save Button
       </button>
     ),

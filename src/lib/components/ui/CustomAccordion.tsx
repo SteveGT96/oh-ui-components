@@ -4,14 +4,15 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import type { AccordionProps } from "./type";
+import type { CustomAccordionProps } from "./type";
 
-export function OptimizeAccordion(props: AccordionProps) {
+export function CustomAccordion(props: CustomAccordionProps) {
   return (
     <Accordion
       type="single"
       defaultValue="item-1"
       collapsible={props.collapsible}
+      className="max-w-lg"
     >
       <AccordionItem value="item-1">
         <AccordionTrigger>{props.title}</AccordionTrigger>
