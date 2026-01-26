@@ -1,9 +1,9 @@
+import { SearchInput } from "@/lib/components/ui/SearchInput";
 import type { Meta, StoryObj } from "@storybook/react-vite";
 import { fn } from "storybook/test";
-import { SearchInput } from "./SearchInput";
 
 const meta = {
-  title: "Search/SearchInput",
+  title: "Components/SearchInput",
   component: SearchInput,
   parameters: {
     layout: "centered",

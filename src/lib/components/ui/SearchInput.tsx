@@ -1,11 +1,11 @@
 import { SearchIcon } from "lucide-react";
 
-import type { SearchInputProps } from "@/components/searchInput/type";
 import {
   InputGroup,
   InputGroupAddon,
   InputGroupInput,
 } from "@/components/ui/input-group";
+import type { SearchInputProps } from "@/lib/components/ui/type";
 
 export function SearchInput({
   placeholder,
