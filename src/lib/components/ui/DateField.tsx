@@ -1,5 +1,4 @@
 import { Button } from "@/components/ui/button";
-import { Calendar } from "@/components/ui/calendar";
 import { Label } from "@/components/ui/label";
 import {
   Popover,
@@ -9,11 +8,13 @@ import {
 import { cn } from "@/lib";
 import { ChevronDownIcon } from "lucide-react";
 import { useState } from "react";
+import { Calendar } from "../../../components/ui/calendar";
 import type { DateFieldProps } from "./type";
 
 export function DateField({
   label,
   fieldValue,
+  className,
   onChange,
   disabled = false,
   error = false,
@@ -32,7 +33,7 @@ export function DateField({
         <PopoverTrigger
           asChild
           disabled={disabled}
-          className={error ? cn("border-destructive") : ""}
+          className={error ? cn("border-destructive") : (className ?? "")}
         >
           <Button
             variant="outline"

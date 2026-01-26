@@ -1,9 +1,9 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { DateField } from "./DateField";
+import { DateField } from "../lib/components/ui/DateField";
 
 const meta: Meta<typeof DateField> = {
-  title: "Form/DateField",
+  title: "Components/DateField",
   component: DateField,
   parameters: {
     layout: "centered",
@@ -16,29 +16,29 @@ type Story = StoryObj<typeof DateField>;
 
 export const Default: Story = {
   args: {
-    label: "Birth date",
+    label: "Date field",
     fieldValue: undefined,
   },
 };
 
 export const WithValue: Story = {
   args: {
-    label: "Birth date",
+    label: "Date field",
     fieldValue: new Date("1998-06-12"),
   },
 };
 
 export const Disabled: Story = {
   args: {
-    label: "Birth date",
+    label: "Date field",
     fieldValue: undefined,
     disabled: true,
   },
 };
 
-export const Error: Story = {
+export const WithError: Story = {
   args: {
-    label: "Birth date",
+    label: "Date field",
     fieldValue: undefined,
     error: true,
     helperText: "Invalid Date",
