@@ -1,0 +1,55 @@
+import { Canvas, Meta } from "@storybook/addon-docs/blocks";
+import * as DateFieldStories from "./DateField.stories";
+
+# DateField
+
+#### Displays a styled Date field component.
+
+<Canvas of={DateFieldStories.Default} />
+
+## Usage
+
+```typescript
+import { DateField } from "@/lib/components/ui/DateField";
+```
+
+```typescript
+<DateField
+    label="DateField"
+    onChange={(value) => {}}
+    fieldValue={new Date()}
+/>
+```
+
+## Props
+
+```typescript
+interface DateFieldProps {
+  label: string;
+  fieldValue: Date | undefined;
+  className?: string;
+  onChange: (value: Date | null) => void;
+  disabled?: boolean;
+  error?: boolean;
+  helperText?: string;
+  required?: boolean;
+}
+```
+
+## Examples
+
+### Default
+
+<Canvas of={DateFieldStories.Default} sourceState="shown" />
+
+### With Value
+
+<Canvas of={DateFieldStories.WithValue} sourceState="shown" />
+
+### With error
+
+<Canvas of={DateFieldStories.WithError} sourceState="shown" />
+
+### Disable
+
+<Canvas of={DateFieldStories.Disabled} sourceState="shown" />
