@@ -1,0 +1,41 @@
+import { Canvas, Meta } from "@storybook/addon-docs/blocks";
+import * as SearchInputStories from "./SearchInput.stories";
+
+# SearchInput
+
+#### Displays a styled Search input component.
+
+<Canvas of={SearchInputStories.Default} />
+
+## Usage
+
+```typescript
+import { SearchInput } from "@/lib/components/ui/SearchInput";
+```
+
+```typescript
+<SearchInput
+    placeholder="Search..."
+    onChange={(value) => {}}
+/>
+```
+
+## Props
+
+```typescript
+interface SearchInputProps {
+  placeholder: string;
+  onChange: (value: string) => void;
+  disabled?: boolean;
+}
+```
+
+## Examples
+
+### Default
+
+<Canvas of={SearchInputStories.Default} sourceState="shown" />
+
+### Disable
+
+<Canvas of={SearchInputStories.Disabled} sourceState="shown" />
