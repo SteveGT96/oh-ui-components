@@ -9,7 +9,7 @@
 	],
 	"exports": {
 		".": {
-			"styles": "./dist/ui-components.css",
+			"style": "./dist/ui-components.css",
 			"import": "./dist/index.js",
 			"types": "./dist/lib/index.d.ts",
 			"require": "./dist/index.js"
@@ -25,7 +25,7 @@
 			"require": "./dist/utils.js"
 		},
 		"./styles.css": {
-			"styles": "./dist/styles.css"
+			"style": "./dist/styles.css"
 		}
 	},
 	"scripts": {
