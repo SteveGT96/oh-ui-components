@@ -1,4 +1,5 @@
 import type { LucideIcon } from "lucide-react";
+import type { ReactNode } from "react";
 
 export interface CustomButtonProps {
   variant?:
@@ -12,4 +13,10 @@ export interface CustomButtonProps {
   onClick?: () => void;
   disabled?: boolean;
   icon?: LucideIcon;
+}
+
+export interface CustomAccordionProps {
+  title: string;
+  collapsible?: boolean;
+  content: ReactNode;
 }
