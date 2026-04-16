@@ -1,0 +1,53 @@
+import { Canvas } from "@storybook/addon-docs/blocks";
+import * as CustomButtonStories from "./CustomButton.stories";
+
+# Button
+
+#### Displays a styled Button component.
+
+<Canvas of={CustomButtonStories.Default} />
+
+## Usage
+
+```typescript
+import { CustomButton } from "@/lib/components/ui/CustomButton";
+```
+
+```typescript
+<CustomButton
+    title="Button"
+    onClick={() => {}}
+/>
+```
+
+## Props
+
+```typescript
+interface CustomButtonProps {
+  variant?:
+    | "default"
+    | "destructive"
+    | "outline"
+    | "secondary"
+    | "ghost"
+    | "link";
+  title: string;
+  onClick?: () => void;
+  disabled?: boolean;
+  icon?: LucideIcon;
+}
+```
+
+## Examples
+
+### Default
+
+<Canvas of={CustomButtonStories.Default} sourceState="shown" />
+
+### withIcone
+
+<Canvas of={CustomButtonStories.withIcone} sourceState="shown" />
+
+### Disable
+
+<Canvas of={CustomButtonStories.Disabled} sourceState="shown" />
