@@ -23,6 +23,9 @@
 			"import": "./dist/utils.js",
 			"types": "./dist/lib/utils/index.d.ts",
 			"require": "./dist/utils.js"
+		},
+		"./styles.css": {
+			"styles": "./dist/styles.css"
 		}
 	},
 	"scripts": {
