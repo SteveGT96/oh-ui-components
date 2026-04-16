@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Select } from '@/components/ui/select';
 import './App.css';
 import viteLogo from '/vite.svg';
 import reactLogo from './assets/react.svg';
@@ -28,6 +29,7 @@ function App() {
 			<p className="read-the-docs">
 				Click on the Vite and React logos to learn more
 			</p>
+			<Select></Select>
 		</>
 	);
 }
