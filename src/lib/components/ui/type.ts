@@ -1,6 +1,17 @@
 import type { LucideIcon } from "lucide-react";
 import type { ReactNode } from "react";
 
+export interface DateFieldProps {
+  label: string;
+  fieldValue: Date | undefined;
+  className?: string;
+  onChange: (value: Date | null) => void;
+  disabled?: boolean;
+  error?: boolean;
+  helperText?: string;
+  required?: boolean;
+}
+
 export interface SearchInputProps {
   placeholder: string;
   onChange: (value: string) => void;
