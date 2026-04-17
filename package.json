@@ -41,7 +41,8 @@
 		"start": "storybook dev -p 6006",
 		"build-storybook": "storybook build",
 		"test": "vitest",
-		"test:run": "vitest run"
+		"test:run": "vitest run",
+		"prepare": "vite build"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.14.0",
