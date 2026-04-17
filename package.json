@@ -42,7 +42,7 @@
 		"build-storybook": "storybook build",
 		"test": "vitest",
 		"test:run": "vitest run",
-		"prepare": "vite build"
+		"prepare": "if command -v bun >/dev/null 2>&1; then bun add -D vite-plugin-dts @tailwindcss/vite; else npm i -D vite-plugin-dts @tailwindcss/vite; fi; vite build"
 	},
 	"dependencies": {
 		"@emotion/react": "^11.14.0",
