@@ -13,16 +13,6 @@ The OH UI Components Library is a component library designed primarily to create
 
 ## Getting Started
 
-### Installation
-
-To contribute to the library, follow these steps:
-
-1. Clone the repository and navigate to the project directory.
-2. Install dependencies:
-   ```sh
-   npm install
-   ```
-
 ### Development
 
 Storybook is used to develop and test components in isolation. To start Storybook locally, run:
@@ -32,6 +22,20 @@ npm start
 ```
 
 This will launch Storybook at `http://localhost:6006`, where you can interact with and test components.
+
+### Available Scripts
+
+- `npm start` - Start Storybook development server
+- `npm run dev` - Start Vite development server
+- `npm run build` - Build the library for production
+- `npm run preview` - Preview the built library
+- `npm run test` - Run unit tests in watch mode
+- `npm run test:run` - Run unit tests once (for CI)
+- `npm run lint` - Lint code with Biome
+- `npm run format` - Format code with Biome
+- `npm run check` - Run linting and type checking
+- `npm run build-storybook` - Build Storybook for deployment
+- `npm run shadcn:add` - Add new Shadcn components
 
 ### Adding a New Component
 
@@ -48,42 +52,27 @@ This will launch Storybook at `http://localhost:6006`, where you can interact wi
 
 ## Publishing
 
-The library is published to the NPM registry via GitHub CI pipelines.
+The library is published to the NPM registry via GitHub CI pipelines when a new release is published.
 
 ### Publishing Process
 
-1. Ensure all changes are merged into the `main` branch.
+1. Ensure all changes are merged into the `master` branch.
 2. Bump the package version:
-
    ```bash
    npm version [patch | minor | major]
    ```
-
-3. Annotate the tag with the tasks included in the release:
-
-   ```bash
-   git tag -a vX.X.X -f
-   ```
-
-   The annotation could be something like:
-
-   ```bash
-   vX.X.X
-
-   JIRATAG-2 | Description of the task
-   ```
-
-4. Push the changes to the remote repository:
-
-   ```bash
-   git push origin main --follow-tags
-   ```
-
-5. The GitHub Actions pipeline will automatically publish the package to NPM when a new tag is pushed.
+3. Create a new GitHub release:
+   - Go to the repository on GitHub
+   - Click "Releases" > "Create a new release"
+   - Use the version tag (e.g., `v1.2.3`) as the tag name
+   - Add release notes describing the changes included in this release
+4. The GitHub Actions pipeline will automatically publish the package to NPM when the release is published.
 
 ---
 
-## Installation
+## Usage
+
+### Installation
 
 Install the library using npm:
 
@@ -91,13 +80,30 @@ Install the library using npm:
 npm install @oh/ui-components
 ```
 
-Import components into the application as follows:
+### Exported Components
 
-```jsx
-import { Button } from "@oh/ui-components";
+The library exports the following custom OH components:
+
+- `CustomAccordion`
+- `CustomButton`
+- `DateField`
+- `SearchInput`
+- `SelectField`
+
+### Import Examples
+
+Import components into your application:
+
+```tsx
+import { CustomButton, DateField } from "@oh/ui-components";
 
 function App() {
-  return <Button>Click Me</Button>;
+  return (
+    <div>
+      <CustomButton title="Click Me" onClick={() => console.log('clicked')} />
+      <DateField />
+    </div>
+  );
 }
 ```
 
@@ -128,10 +134,14 @@ We welcome contributions from the community! This section provides guidelines fo
 
 #### Branching Strategy
 
+- **develop**: Main development branch for ongoing work
+- **master**: Release branch for stable, production-ready code
 - Work on **feature branches** created from `develop`
 - Branch naming convention: `feature/component-name` or `fix/issue-description`
-- **Always create a Pull Request** - direct pushes to `develop` or `main` are not allowed
+- **Always create a Pull Request** - direct pushes to `develop` or `master` are not allowed
 - All PRs must be **reviewed and approved** before merging
+- Feature branches are merged into `develop` after review
+- Releases are created from `master` branch
 
 #### Pull Request Process
 
@@ -144,55 +154,57 @@ We welcome contributions from the community! This section provides guidelines fo
 2. Make your changes following the guidelines below
 3. Test your changes in Storybook
 4. Commit with clear, descriptive messages
-5. Push your branch and create a Pull Request
+5. Push your branch and create a Pull Request targeting `develop`
 6. Wait for code review and address any feedback
-7. Once approved, your PR will be merged
+7. Once approved, your PR will be merged into `develop`
 
 ### Component Development Guidelines
+
+#### Component Types
+
+This library uses two types of components:
+
+- **Base Components**: Standard Shadcn UI components (button, input, etc.) used as building blocks
+- **Custom OH Components**: OH-branded components that wrap base components with specific styling and behavior
+
+Only custom OH components are exported from the library and should have stories and documentation.
 
 #### Adding a New Component
 
 1. **Install Base Component** (if using Shadcn):
-
    ```bash
    npx shadcn@latest add [component-name]
    ```
-
    The component will be placed under `@/components/ui` directory.
 
-2. **Move and Customize**:
+2. **Create Custom OH Component**:
+   - Create a new file in `lib/components/ui` following OH naming conventions
+   - Wrap the base component with OH-specific props and styling
+   - Export the custom component from `lib/components/ui/index.ts`
 
-   - Move the component to `lib/components/ui`
-   - Rename according to OH design specifications
-   - Customize to meet design guidelines
-
-3. **Create Stories and Documentation** (Required):
-   Every component must have:
-   - **`.stories.ts` file**: Interactive examples and variants
-   - **`.mdx` file**: Complete documentation
+3. **Create Stories and Documentation** (Required for custom components):
+   Every custom component must have:
+   - **`.stories.ts` file**: Interactive examples and variants in `src/stories/`
+   - **`.mdx` file**: Complete documentation in `src/stories/`
 
 #### Documentation Requirements
 
-Each component must include both files following these patterns:
+Each custom component must include both files in `src/stories/` following these patterns:
 
 **Component.stories.ts Structure:**
 
 ```typescript
 import type { Meta, StoryObj } from "@storybook/react";
-import { ComponentName } from "./ComponentName";
+import { ComponentName } from "@/components/ui/component-name";
 
-const meta: Meta<typeof ComponentName> = {
+const meta = {
   title: "Components/ComponentName",
   component: ComponentName,
   parameters: {
-    docs: {
-      page: () => import("./ComponentName.mdx").then((m) => m.default),
-    },
+    layout: 'centered',
   },
-  argTypes: {
-    // Define component props and controls
-  },
-};
+  tags: ['autodocs'],
+} satisfies Meta<typeof ComponentName>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -200,12 +212,6 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     // Default props
-  },
-};
-
-export const Variant: Story = {
-  args: {
-    // Variant props
   },
 };
 ```
@@ -216,14 +222,14 @@ All `.mdx` files must follow this exact pattern:
 ````markdown
 import { Canvas, Meta } from '@storybook/blocks';
 
-import \* as ComponentStories from './Component.stories';
+import * as ComponentStories from './Component.stories';
 
 <Meta title="Components/ComponentName" />
- 
+
 # ComponentName
- 
+
 #### Displays a styled ComponentName component.
- 
+
 <Canvas of={ComponentStories.Default} />
 
 ## Usage
@@ -231,6 +237,30 @@ import \* as ComponentStories from './Component.stories';
 ```typescript
 import { ComponentName } from "@oh/ui-components";
 ```
+
+```typescript
+<ComponentName prop1="value1" prop2="value2" />
+```
+
+## Props
+
+```typescript
+type ComponentNameProps = {
+  prop1: string;
+  prop2?: string;
+  // Add all component props with types
+};
+```
+
+## Examples
+
+### Default
+
+<Canvas of={ComponentStories.Default} />
+
+### Variant Name
+
+<Canvas of={ComponentStories.VariantName} />
 ````
 
 ```typescript
@@ -269,11 +299,38 @@ type ComponentNameProps = {
 
 #### Story Development
 
-- **Stories must match components**: Every component in `lib/components` must have corresponding stories
+- **Stories must match components**: Every custom component in `lib/components/ui` must have corresponding stories in `src/stories/`
 - Include all component variants and use cases
 - Provide interactive controls for all props
 - Add meaningful story names and descriptions
 - Test edge cases and error states
+
+### Testing
+
+The project uses multiple testing frameworks:
+
+#### Unit Testing
+- **Framework**: Vitest
+- **Command**: `npm run test` (watch mode) or `npm run test:run` (CI mode)
+- **Coverage**: Run with `npm run test:run -- --coverage`
+
+#### End-to-End Testing
+- **Framework**: Cypress
+- **Command**: Runs automatically in CI, or manually with Cypress GUI
+- **Tests location**: `cypress/` directory
+
+#### Component Testing
+- **Framework**: Storybook + Vitest integration
+- **Command**: `npm run start` to view components in Storybook
+- Test all component variants and interactions in the Storybook interface
+
+### Linting and Code Quality
+
+- **Tool**: Biome (unified linter and formatter)
+- **Lint code**: `npm run lint`
+- **Format code**: `npm run format`
+- **Check all**: `npm run check` (includes linting and type checking)
+- Biome replaces ESLint and Prettier for faster performance
 
 ### Design Consistency
 
@@ -282,23 +339,17 @@ type ComponentNameProps = {
 - Maintain consistency with existing components
 - Ensure proper Tailwind CSS usage
 
-### Testing
-
-- Test all component variants in Storybook
-- Verify responsive behavior
-- Check accessibility compliance
-- Ensure proper prop validation
-
 ### Code Review Guidelines
 
 When reviewing PRs, check for:
 
 - [ ] Component follows OH design specifications
-- [ ] Both `.stories.ts` and `.mdx` files are included
+- [ ] Both `.stories.ts` and `.mdx` files are included in `src/stories/`
 - [ ] Documentation follows the standard pattern
 - [ ] All component variants are covered in stories
 - [ ] Code is properly typed with TypeScript
 - [ ] Accessibility requirements are met
 - [ ] Storybook renders without errors
+- [ ] Tests pass (unit tests and linting)
 
 Thank you for contributing to OH UI Components!

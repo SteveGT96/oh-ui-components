@@ -1,0 +1,49 @@
+import { Canvas } from "@storybook/addon-docs/blocks";
+import * as CustomAccordionStories from "./custom-accordion.stories";
+
+# Accordion
+
+#### Displays a styled Accordion component.
+
+<Canvas of={CustomAccordionStories.Default} />
+
+## Usage
+
+```typescript
+import { CustomAccordion } from "@/lib/components/ui/custom-accordion";
+```
+
+```typescript
+<CustomAccordion
+    title="Accordion"
+    content={<p>Content</p>}
+/>
+```
+
+## Props
+
+```typescript
+interface CustomAccordionProps {
+  title: string;
+  collapsible?: boolean;
+  content: ReactNode;
+}
+```
+
+## Examples
+
+### Default
+
+<Canvas of={CustomAccordionStories.Default} sourceState="shown" />
+
+### With Paragraph
+
+<Canvas of={CustomAccordionStories.SingleWithParagraph} sourceState="shown" />
+
+### With Button
+
+<Canvas of={CustomAccordionStories.SingleWithButton} sourceState="shown" />
+
+### With Div
+
+<Canvas of={CustomAccordionStories.SingleWithDiv} sourceState="shown" />

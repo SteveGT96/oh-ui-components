@@ -1,7 +1,7 @@
 {
-  "extends": "../tsconfig.json",
-  "compilerOptions": {
-    "types": ["cypress"]
-  },
-  "include": ["e2e/**/*.cy.ts"]
+	"extends": "../tsconfig.json",
+	"compilerOptions": {
+		"types": ["cypress"]
+	},
+	"include": ["e2e/**/*.cy.ts"]
 }
